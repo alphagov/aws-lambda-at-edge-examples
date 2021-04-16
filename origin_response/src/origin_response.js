@@ -1,18 +1,19 @@
-// use environment variables if set, otherwise here are the defaults:
+// defaults:
+// Lambda@Edge doesn't support environment variables!
 
-const DELETE_SRV_HEADER = process.env.DELETE_SRV_HEADER || "true";
-const HEADER_STS        = process.env.HEADER_STS || "max-age=31536000; includeSubdomains; preload";
-const HEADER_EXPECTCT   = process.env.HEADER_EXPECTCT || "max-age=0";
-const HEADER_CSP        = process.env.HEADER_CSP || "default-src 'self';";
-const HEADER_XCTO       = process.env.HEADER_XCTO || "nosniff";
-const HEADER_XFO        = process.env.HEADER_XFO || "DENY";
-const HEADER_XSSP       = process.env.HEADER_XFF || "1; mode=block";
-const HEADER_RF         = process.env.HEADER_RF || "strict-origin-when-cross-origin";
-const HEADER_PP         = process.env.HEADER_PP || "geolocation=(), microphone=(), camera=(), autoplay=(), payment=(), sync-xhr=()";
-const HEADER_FP         = process.env.HEADER_FP || "geolocation 'none'; microphone 'none'; camera 'none'; autoplay 'none'; payment 'none'; sync-xhr 'none';";
-const HEADER_COEP       = process.env.HEADER_COEP || "require-corp";
-const HEADER_COOP       = process.env.HEADER_COOP || "same-origin";
-const HEADER_CORP       = process.env.HEADER_CORP || "same-origin";
+const DELETE_SRV_HEADER = "true";
+const HEADER_STS        = "max-age=31536000; includeSubdomains; preload";
+const HEADER_EXPECTCT   = "max-age=0";
+const HEADER_CSP        = "default-src 'self';";
+const HEADER_XCTO       = "nosniff";
+const HEADER_XFO        = "DENY";
+const HEADER_XSSP       = "1; mode=block";
+const HEADER_RF         = "strict-origin-when-cross-origin";
+const HEADER_PP         = "geolocation=(), microphone=(), camera=(), autoplay=(), payment=(), sync-xhr=()";
+const HEADER_FP         = "geolocation 'none'; microphone 'none'; camera 'none'; autoplay 'none'; payment 'none'; sync-xhr 'none';";
+const HEADER_COEP       = "require-corp";
+const HEADER_COOP       = "same-origin";
+const HEADER_CORP       = "same-origin";
 
 exports.handler = async (event) => {
     //Get contents of response
