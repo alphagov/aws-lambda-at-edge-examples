@@ -10,7 +10,8 @@ data "archive_file" "lambda_zip_origin-response" {
 resource "aws_lambda_function" "lambda-at-edge_origin-response" {
   filename         = data.archive_file.lambda_zip_origin-response.output_path
   source_code_hash = data.archive_file.lambda_zip_origin-response.output_base64sha256
-
+  handler          = "origin_response.handler"
+  
   function_name = "lambda@edge-origin_response"
 
   runtime = "nodejs12.x"
