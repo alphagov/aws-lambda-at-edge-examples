@@ -17,14 +17,21 @@ resource "aws_lambda_function" "lambda-at-edge_origin-response" {
 
   role = aws_iam_role.lambda_edge_exec.arn
 
-  # us-west-1 is important, this is where Lambda@Edge are deployed from:
+  # us-east-1 is important, this is where Lambda@Edge are deployed from:
   provider = aws.us_east_1
 
   # versions are required, so publish needs to be true:
   publish = true
 
-  # use the variables to set a header
+  # DELETE_SRV_HEADER if true (or not set),
+  # removes the "server" header (info disclosure risk)
+  
+  # use the HEADER_ variables to set a header different to defaults
+  # defaults are specified in the origin_response.js
   # 'NULL' means the header won't be set
+  
+  # if the origin sets a header, the Lambda won't overwrite it.
+  
   environment {
     variables = {
       # DELETE_SRV_HEADER = "false"
