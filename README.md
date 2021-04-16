@@ -3,14 +3,14 @@ Terraform and example code for using Lambda@Edge with CloudFront to alter reques
 
 ## Examples
 
-- [origin response for setting security headers](origin_response/)
+- [origin response for setting security headers](origin_response/src/origin_response.js)
 
 ## What is Lambda@Edge?
 
 [Lambda@Edge] are distributed Lambdas that are for CloudFront distributions to
 utilise, they run on AWS edge infrastructure and not in one particular region.
 
-There is currently only two supported languages: Node.js (version 12) and Python
+There are currently only two supported languages: Node.js (version 12) and Python
 (3.7).
 
 The Lambdas should be _quick_ due to them potentially handling lots of requests.
@@ -30,7 +30,7 @@ There are four Lambda@Edge triggers, that occur in this order:
 
 ### What trigger do I need?
 
-Here's some examples:
+Here are some examples:
 - I want to change the origin dynamically for every request: Viewer Request
 - I want to change the origin dynamically but then cache: Origin Request
 - I want to change the origin response headers an then cache: Origin Response
@@ -52,8 +52,8 @@ request), so their limits are:
 - 40 KB response (headers and body)
 - 1 MB size of Lambda function
 
-Origin request and responses can be slightly slower (they only trigger if the
-cache is empty for a given request):
+Origin request and responses can be slightly slower and bigger (they only
+trigger if the cache is empty for a given request):
 - memory limit is same as regular Lambdas
 - 30 second timeout
 - 1 MB response (headers and body)
