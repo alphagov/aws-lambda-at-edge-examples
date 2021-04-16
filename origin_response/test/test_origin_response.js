@@ -18,6 +18,12 @@ fixture = {
                 "value": "S3"
               }
             ],
+            "content-security-policy": [
+              {
+                "key": "Content-Security-Policy",
+                "value": "INCORRECT_USED_FOR_TEST"
+              }
+            ],
             "vary": [
               {
                 "key": "Vary",
@@ -57,6 +63,12 @@ describe("origin_response", function() {
   it('does not have server', async () => {
     const result = await origin_response.handler(fixture);
     expect(result["headers"]).to.not.have.any.keys('server');
+  })
+
+  it('does not overwrite a header', async () => {
+    const result = await origin_response.handler(fixture);
+    const csp = result["headers"]["content-security-policy"][0];
+    expect(csp.value).to.equal('INCORRECT_USED_FOR_TEST');
   })
 
   it('has headers that are in the CloudFront format', async () => {
