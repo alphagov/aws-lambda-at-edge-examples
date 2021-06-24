@@ -3,7 +3,8 @@ DEFAULT_GOAL := test
 PHONY = clean
 
 test: clean
-	cd origin_response && npm test
+	cd origin_response/security_headers && npm test
+	cd origin_request/security.txt && npm test
 	cd terraform && terraform init
 	cd terraform && terraform validate
 

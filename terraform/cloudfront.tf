@@ -10,7 +10,12 @@ resource "aws_cloudfront_distribution" "distribution" {
 
     lambda_function_association {
       event_type = "origin-response"
-      lambda_arn = aws_lambda_function.lambda-at-edge_origin-response.qualified_arn
+      lambda_arn = aws_lambda_function.security_headers_origin-response.qualified_arn
+    }
+
+    lambda_function_association {
+      event_type = "origin-request"
+      lambda_arn = aws_lambda_function.security_txt_origin-request.qualified_arn
     }
   }
 }
