@@ -3,7 +3,8 @@ Terraform and example code for using Lambda@Edge with CloudFront to alter reques
 
 ## Examples
 
-- [origin response for setting security headers](origin_response/src/origin_response.js)
+- [origin response for setting security headers](origin_response/security_headers/src/origin_response.js)
+- [origin request for setting.txt redirect](origin_request/security.txt/src/origin_request.js)
 
 ## What is Lambda@Edge?
 
